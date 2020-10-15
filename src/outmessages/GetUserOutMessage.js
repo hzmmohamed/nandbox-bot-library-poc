@@ -8,11 +8,4 @@ module.exports = class GetUserOutMessage extends OutMessage {
         this.method = "getUser";
     }
 
-    toJsonObject(){
-        let obj = super.toJsonObject();
-
-        if (this.user_id) obj.user_id = this.user_id;
-
-        return obj;
-    }
 }

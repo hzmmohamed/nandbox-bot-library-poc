@@ -1,18 +1,21 @@
-// const botApi = require('nandbox-bot-api')
+const { Bot, outMessage, outMessageMethods, outMessageTypes } = require("./src");
+const config = require("./botconfig.json");
 
-// const bot = new botApi.Bot(token, uri)
+const myBot = new Bot(config.token, config.uri, config.dlServer, config.ulServer);
 
-// bot.setCallback(botApi.callbacks.CALLBACK_NAME, function)
+myBot.on.receive = (incomingMsg) => {
+  myBot.send(new outMessageTypes.TextOutMessage(incomingMsg.text, incomingMsg.chat.id));
 
-// example send a message with inline menu
-// bot.setCallback(botApi.callbacks.INCOMINGMESSAGE, (incomingMsg) => {
-//     const audioMsg = new botApi.outmessages.AudioOutMessage()
-//     const 
-// }))
+  myBot.send(
+    new outMessage(outMessageMethods.sendMessage, {
+      text: incomingMsg.text,
+      chat_id: incomingMsg.chat.id,
+    })
+  );
+};
 
-// bot.start()
+myBot.on.userDetails = (userDetails) => {
+  console.log();
+};
 
-
-
-const Bot = require('./src/bot')
-const bot = new Bot()
+myBot.start();

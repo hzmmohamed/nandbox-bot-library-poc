@@ -9,11 +9,4 @@ const OutMessage = require('../outmessages/OutMessage');
 		this.method = 'deleteBlacklist';
 	}
 
-	toJsonObject() {
-		let obj = super.toJsonObject();
-        
-        if (this.users) obj.users = this.users;
-		
-		return obj;
-	}
 }

@@ -8,16 +8,9 @@ const OutMessage = require("./OutMessage");
  */
 module.exports = class PhotoOutMessage extends OutMessage{
 
-    constructor() {
+    constructor(attr1, att) {
         super();
         this.method = "sendPhoto";
     }
 
-    toJsonObject(){
-        let obj = super.toJsonObject();
-        
-        if (this.photo) obj.photo = this.photo;
-
-        return obj;
-    }
 }

@@ -7,11 +7,4 @@ module.exports = class VideoOutMessage extends OutMessage {
         this.method = "sendVideo";
     }
 
-    toJsonObject(){
-        let obj = super.toJsonObject();
-        
-        if (this.video != null) obj.video = video;
-        
-        return obj;
-    }
 }

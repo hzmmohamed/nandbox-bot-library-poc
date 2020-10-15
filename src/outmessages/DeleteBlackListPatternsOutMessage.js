@@ -6,11 +6,4 @@ module.exports = class DeleteBlackListPatternsOutMessage extends OutMessage {
 		this.method = 'deleteBlacklistPatterns';
 	}
 
-	toJsonObject() {
-		let obj = super.toJsonObject();
-        
-        if (this.pattern) obj.pattern = this.pattern;
-		
-		return obj;
-	}
 }

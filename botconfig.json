@@ -1,0 +1,6 @@
+{
+  "uri": "wss://d1.nandbox.net:5020/nandbox/api/",
+  "token": "90091783855456860:0:48UTg5D6fZh4Tzo1uvAVft2rP8Vg9E",
+  "dlServer": "https://d1.nandbox.net:5020/nandbox/download/",
+  "ulServer": "https://d1.nandbox.net:5020/nandbox/upload/"
+}

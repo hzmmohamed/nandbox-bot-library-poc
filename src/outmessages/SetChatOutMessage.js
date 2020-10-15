@@ -8,11 +8,4 @@ module.exports = class SetChatOutMessage extends OutMessage {
         this.method = "setChat";
     }
 
-    toJsonObject(){
-        let obj = super.toJsonObject();
-
-        obj.chat = this.chat;
-
-        return obj;
-    }
 }

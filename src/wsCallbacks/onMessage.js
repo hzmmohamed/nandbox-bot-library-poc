@@ -1,11 +1,13 @@
 const { Logger, funcs } = require("../util");
 
-module.exports = (msg) => {
+module.exports = function (msg) {
+  console.log(this)
+  console.log('Message' + msg)
   let user;
   this.lastMessage = new Date().getUTCMilliseconds();
+  let obj = JSON.parse(msg.data);
   Logger.info("INTERNAL: ONMESSAGE");
   Logger.info(new Date() + " >>>>>>>>> Update Obj : " + obj);
-  let obj = JSON.parse(mdg.data);
   Logger.info(obj);
   if (obj.method) {
     Logger.info("method: " + method);

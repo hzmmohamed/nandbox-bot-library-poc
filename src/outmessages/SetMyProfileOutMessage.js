@@ -8,11 +8,4 @@ module.exports = class SetMyProfileOutMessage extends OutMessage {
         this.method = "setMyProfile";
     }
 
-    toJsonObject(){
-        let obj = super.toJsonObject();
-
-        obj.user = this.user;
-
-        return obj;
-    }
 }

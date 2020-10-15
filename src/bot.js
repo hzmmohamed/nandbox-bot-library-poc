@@ -1,11 +1,18 @@
-const nbClient = require("./client");
+const nbClient = require("./nbClient");
 const utils = require("./util");
+const fs = require("fs");
 
-exports.Bot = class Bot {
+module.exports = class Bot {
+  /**
+   * 
+   * @param {*} token 
+   * @param {*} uri 
+   * @param {*} dlServer 
+   * @param {*} ulServer 
+   */
   constructor(token, uri, dlServer, ulServer) {
     this.config = { token, uri, dlServer, ulServer };
-    this.api = null;
-    this.on = {
+    const defaultCallbacks = {
       connect: (_api) => {
         this.api = _api;
         console.log("Authenticated");
@@ -13,12 +20,7 @@ exports.Bot = class Bot {
 
       receive: (incomingMsg) => {
         console.log("Message Received");
-
-        if (incomingMsg.isTextMsg()) {
-          let chatId = incomingMsg.chat.id; // get your chat Id
-          let text = incomingMsg.text; // get your text message
-          api.sendText(chatId, text); // Sending message back as an Echo
-        }
+        console.log(incomingMsg);
       },
 
       // implement other nandbox.Callback() as per your bot need
@@ -45,31 +47,22 @@ exports.Bot = class Bot {
       blackList: (blackList) => {},
       whiteList: (whiteList) => {},
     };
+    this.on = defaultCallbacks;
+    this.client = new nbClient(this.config.uri, this.config.token, this.on);
   }
 
   start() {
-    nbClient;
+    // this.client.authenticate();
+    this.client.run();
   }
 
   uploadFile(filePath) {
-    return utils.MediaTransfer.uploadFile(
-      this.config.token,
-      path,
-      this.config.ulServer
-    );
+    return utils.MediaTransfer.uploadFile(this.config.token, path, this.config.ulServer);
   }
   downloadFile(fileId, savingDirPath, savingFileName) {
-    return utils.MediaTransfer.downloadFile(
-      this.config.token,
-      fileId,
-      savingDirPath,
-      savingFileName,
-      this.config.dlServer
-    );
+    return utils.MediaTransfer.downloadFile(this.config.token, fileId, savingDirPath, savingFileName, this.config.dlServer);
   }
-
-
-
+  send(outMsg) {
+    this.client.internalWS.send("sendMessage", outMsg);
+  }
 };
-
-exports.outMessageTypes = 

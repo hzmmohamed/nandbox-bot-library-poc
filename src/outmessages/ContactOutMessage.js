@@ -17,12 +17,4 @@ module.exports = class ContactOutMessage extends OutMessage {
         this.method = "sendContact";
     }
 
-    toJsonObject(){
-        let obj = super.toJsonObject();
-
-        if (this.name) obj.name = this.name;
-        if (this.phone_number) obj.phone_number = this.phone_number;
-
-        return obj;
-    }
 } 

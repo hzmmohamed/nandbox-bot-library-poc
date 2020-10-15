@@ -1,7 +1,7 @@
 const { Logger } = require("../util");
 const utils = require("../util");
 
-module.exports = async (status) => {
+module.exports = async function (status) {
   // log closing info
   Logger.info("INTERNAL: ONCLOSE");
   Logger.info("StatusCode = " + status.code);
